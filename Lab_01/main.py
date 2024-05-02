@@ -36,6 +36,10 @@ if __name__ == '__main__':
                     break
 
         elif option == 2:
+            # Δx = ViΔt + (αΔt^2)/2
+            # Plus Graph
             print('Running option 2')
+
         elif option == 3:
+            # Vf = ViΔt + αΔt
             print('Exiting program')
