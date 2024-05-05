@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
-    option = None
 
+    option = None
     while option != 3:
         option = int(input('[1] MRU [2] MRUV [3] Exit: '))
 
