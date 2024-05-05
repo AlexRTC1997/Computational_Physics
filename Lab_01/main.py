@@ -46,10 +46,24 @@ if __name__ == '__main__':
                     break
 
         elif option == 2:
-            # Δx = ViΔt + (αΔt^2)/2
-            # Plus Graph
-            print('Running option 2')
+            mruv_option = None
 
-            # Vf = ViΔt + αΔt
+            while mruv_option != 3:
+                mruv_option = int(input('\n\t[1] Δx [2] Vf [3] Back: '))
+                print()
+
+                if mruv_option == 1:
+                    print('\tΔx = ViΔt + (αΔt^2)/2')
+                elif mruv_option == 2:
+                    Vi = float(input('\t> Vi: '))
+                    Δt = float(input('\t> Δt: '))
+                    α = float(input('\t> α: '))
+
+                    print('\t> Vf = Vi + αΔt')
+                    print(f'\t  Vf = {Vi} + {α} x {Δt}')
+                    print(f'\t  Vf = {Vi + α * Δt}m/s')
+                elif mruv_option == 3:
+                    break
+
         elif option == 3:
             print('\n> Program finished...\n')
