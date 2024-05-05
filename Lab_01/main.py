@@ -5,41 +5,43 @@ if __name__ == '__main__':
 
     while option != 3:
         option = int(input('[1] MRU [2] MRUV [3] Exit: '))
+
         if option == 1:
             mru_option = None
 
             while mru_option != 4:
-                mru_option = int(input('\n[1] Δx [2] V [3] Δt [4] Back: '))
+                mru_option = int(input('\n\t[1] Δx [2] V [3] Δt [4] Back: '))
                 print()
-                if mru_option == 1:
-                    V = float(input('> V: '))
-                    Δt = float(input('> Δt: '))
 
-                    print('> Δx = V x Δt')
-                    print(f'  Δx = {V} x {Δt}')
-                    print(f'  Δx = {V * Δt}')
+                if mru_option == 1:
+                    V = float(input('\t> V: '))
+                    Δt = float(input('\t> Δt: '))
+
+                    print('\t> Δx = V x Δt')
+                    print(f'\t  Δx = {V} x {Δt}')
+                    print(f'\t  Δx = {V * Δt}m')
                 elif mru_option == 2:
-                    print('Note: V != 0')
-                    Δx = float(input('> Δx: '))
-                    V = float(input('> V: '))
+                    print('\tNote: V != 0')
+                    Δx = float(input('\t> Δx: '))
+                    V = float(input('\t> V: '))
 
                     while V == 0:
-                        V = float(input('V: '))
+                        V = float(input('\tV: '))
 
-                    print('> Δt = Δx / V')
-                    print(f'  Δt = {Δx} / {V}')
-                    print(f'  Δt = {Δx / V}')
+                    print('\t> Δt = Δx / V')
+                    print(f'\t  Δt = {Δx} / {V}')
+                    print(f'\t  Δt = {Δx / V}s')
                 elif mru_option == 3:
-                    print('Note: Δt != 0')
-                    Δx = float(input('> Δx: '))
-                    Δt = float(input('> Δt: '))
+                    print('\tNote: Δt != 0')
+                    Δx = float(input('\t> Δx: '))
+                    Δt = float(input('\t> Δt: '))
 
                     while Δt == 0:
-                        Δt = float(input('Δt: '))
+                        Δt = float(input('\tΔt: '))
 
-                    print('> V = Δx / Δt')
-                    print(f'  V = {Δx} / {Δt}')
-                    print(f'  V = {Δx / Δt}')
+                    print('\t> V = Δx / Δt')
+                    print(f'\t  V = {Δx} / {Δt}')
+                    print(f'\t  V = {Δx / Δt}m/s')
                 elif mru_option == 4:
                     break
 
