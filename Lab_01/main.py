@@ -1,4 +1,4 @@
-
+import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     option = None
@@ -53,7 +53,26 @@ if __name__ == '__main__':
                 print()
 
                 if mruv_option == 1:
-                    print('\tΔx = ViΔt + (αΔt^2)/2')
+                    Vi = float(input('\t> Vi: '))
+                    Δt = float(input('\t> Δt: '))
+                    α = float(input('\t> α: '))
+
+                    print('\t> Δx = ViΔt + (αΔt^2)/2')
+                    print(f'\t  Δx = {Vi} x {Δt} + ({α} x {Δt}^2)/2')
+                    print(f'\t  Δx = {Vi * Δt + (α * Δt ** 2)/2}m')
+
+                    # Chart
+                    time_interval = range(int(Δt) + 1)
+                    distances = [(Vi * time + (α * time ** 2)/2)
+                                 for time in time_interval]
+
+                    plt.plot(time_interval, distances)
+                    plt.title('MRUV Chart')
+                    plt.xlabel('Time (s)')
+                    plt.ylabel('Distance (m)')
+                    plt.grid(True)
+                    plt.show()
+
                 elif mruv_option == 2:
                     Vi = float(input('\t> Vi: '))
                     Δt = float(input('\t> Δt: '))
