@@ -28,7 +28,7 @@ while option != 2:
             tension = mass1 * gravity - mass1 * acceleration
 
             print('[Case 2: mass1 > mass2]')
-            print(f'> Acceleration: {acceleration}m/s2')
+            print(f'> Acceleration: -{acceleration}m/s2')
             print(f'> Tension: {tension}N')
         elif mass2 > mass1:
             acceleration = gravity * (mass2 - mass1) / (mass1 + mass2)
