@@ -1,1 +1,0 @@
-# Realizar un cóidigo que permita observar las líneas de campo eléctrico
