@@ -36,7 +36,7 @@ def main():
         print('[2]. Two positive charges')
         print('[3]. Two negative charges')
         print('[4]. Exit')
-        selected_option = input('> Select option: ')
+        selected_option = input('\n> Select option: ')
         print()
 
         # Check if the selected option is to exit
@@ -52,7 +52,7 @@ def main():
         elif selected_option == '3':
             charges = [(-1, (-1, 0)), (-1, (1, 0))]
         else:
-            print('> Invalid option. Please choose a valid option.\n')
+            print('> Invalid option. Please choose a valid option.')
             continue
 
         # Electric field vector, E=(Ex, Ey), as separate components
