@@ -51,8 +51,8 @@ def show_force_graph(q1: float, q2: float, r: float) -> None:
     forces = [electric_force(q1, q2, d) for d in distances]
 
     plt.plot(distances, forces)
-    plt.title('Electric force graph')
-    plt.xlabel('Distance (m^2)')
+    plt.title('Electric Force Graph')
+    plt.xlabel('Distance (m)')
     plt.ylabel('Force (N)')
     plt.grid(True)
     plt.show()
@@ -73,7 +73,7 @@ def show_field_graph(Q: float, r: float) -> None:
     fields = [electric_field(Q, d) for d in distances]
 
     plt.plot(distances, fields)
-    plt.title('Electric field graph')
+    plt.title('Electric Field Graph')
     plt.xlabel('Distance (m^2)')
     plt.ylabel('Field (N/C)')
     plt.grid(True)
