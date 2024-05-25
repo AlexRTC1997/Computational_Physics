@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 from magpylib.source.magnet import Cylinder, Box
 from magpylib import Collection, displaySystem
 
-# This is a version with magpylib v2.3.0b0
-
 # Create magnets
 x1 = Box(mag=(0, 0, 600), dim=(3, 3, 3), pos=(-4, 0, 3))
 x2 = Cylinder(mag=(0, 0, 500), dim=(3, 5))
@@ -36,6 +34,7 @@ displaySystem(c, subplotAx=ax1, suppress=True)
 # Display field in xz-plane using matplotlib
 X, Z = np.meshgrid(xs, zs)
 U, V = Bs[:, :, 0], Bs[:, :, 2]
-ax2.streamplot(X, Z, U, V, color=np.log(U**2+V**2))
+ax2.streamplot(X, Z, U, V, color=np.log(U ** 2 + V ** 2))
 
+# Display plot
 plt.show()
