@@ -22,7 +22,8 @@ rho = 28.0
 X0 = [1.0, 1.0, 1.0]
 
 # Time points where solution is computed
-t = np.linspace(0, 40, 10000)
+# t = np.linspace(0, 40, 10000)
+t = np.linspace(0, 20, 10000)
 
 # Solve ODE
 solution = odeint(lorenz, X0, t, args=(sigma, beta, rho))
