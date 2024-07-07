@@ -1,11 +1,25 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import odeint
+from scipy.integrate import solve_ivp
 
-# Define the Lorenz attractor equations
+# (1) Define the Lorenz attractor equations
 
 
-def lorenz(X, t, sigma, beta, rho):
+def lorenz(t: float, X: list, sigma: float, beta: float, rho: float) -> list:
+    """
+    Defines the Lorenz attractor differential equations.
+
+    Parameters:
+    t (float): Time variable.
+    X (list or array): List or array containing the current values of x, y, and z.
+    sigma (float): Parameter sigma in the Lorenz system.
+    beta (float): Parameter beta in the Lorenz system.
+    rho (float): Parameter rho in the Lorenz system.
+
+    Returns:
+    list: List containing the derivatives [dx/dt, dy/dt, dz/dt].
+    """
+
     x, y, z = X
     dxdt = sigma * (y - x)
     dydt = x * (rho - z) - y
@@ -13,32 +27,32 @@ def lorenz(X, t, sigma, beta, rho):
     return [dxdt, dydt, dzdt]
 
 
-# Set parameters
+# (2) Parameters of the Lorenz system
 sigma = 10.0
 beta = 8.0 / 3.0
 rho = 28.0
 
-# Initial conditions
+# (3) Initial conditions
 X0 = [1.0, 1.0, 1.0]
 
-# Time points where solution is computed
-# t = np.linspace(0, 40, 10000)
-t = np.linspace(0, 20, 10000)
+# [4] Time span for the integration
+t_span = (0, 40)
+t_eval = np.linspace(0, 40, 10000)
 
-# Solve ODE
-solution = odeint(lorenz, X0, t, args=(sigma, beta, rho))
+# (5) Solve the Lorenz system
+sol = solve_ivp(lorenz, t_span, X0, args=(sigma, beta, rho), t_eval=t_eval)
 
-# Plot results
+# (6) Extract the solutions
+x = sol.y[0]
+y = sol.y[1]
+z = sol.y[2]
+
+# (7) Plot the Lorenz attractor
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.plot(solution[:, 0], solution[:, 1], solution[:, 2])
-ax.set_xlabel("X Axis")
-ax.set_ylabel("Y Axis")
-ax.set_zlabel("Z Axis")
+ax.plot(x, y, z, color='m', lw=0.5)
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
 ax.set_title("Lorenz Attractor")
-
 plt.show()
-
-
-# TIF - 2 points | Report and Slides with Latex
-# Inital conditions 28, 10000, 10
