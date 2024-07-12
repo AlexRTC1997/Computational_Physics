@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 
 
-def rule30(current_state) -> list:
+def rule30_periodic(current_state):
     """
-    Apply Rule 30 to a 1D list of binary states manually.
+    Apply Rule 30 to a 1D list of binary states with periodic boundary conditions.
 
     Parameters:
     current_state (list): The current state of the automaton.
@@ -12,8 +12,13 @@ def rule30(current_state) -> list:
     list: The new state after applying Rule 30.
     """
     new_state = [0] * len(current_state)
-    for i in range(1, len(current_state) - 1):
-        neighborhood = current_state[i-1:i+2]
+    for i in range(len(current_state)):
+        left = current_state[i-1] if i > 0 else current_state[-1]
+        center = current_state[i]
+        right = current_state[i +
+                              1] if i < len(current_state) - 1 else current_state[0]
+        neighborhood = [left, center, right]
+
         if neighborhood == [1, 1, 1]:
             new_state[i] = 0
         elif neighborhood == [1, 1, 0]:
@@ -33,26 +38,7 @@ def rule30(current_state) -> list:
     return new_state
 
 
-def display_automaton(automaton) -> None:
-    # Plot the automaton
-    plt.figure(figsize=(10, 5))
-    plt.imshow(automaton, cmap='Blues', interpolation='nearest')
-    plt.title("Cellular Automaton - Rule 30")
-    plt.xlabel("Cell")
-    plt.ylabel("Step")
-    plt.show()
-
-
-def main() -> None:
-    try:
-        steps = int(input("> Enter the number of iterations (steps): "))
-    except ValueError:
-        print("> Please enter valid integers for the number of iterations.")
-        return
-
-    # Parameters
-    width = 2 * steps + 1
-
+def generate_automaton(width, n_steps):
     # Initial state
     initial_state = [0] * width
     initial_state[width // 2] = 1
@@ -60,16 +46,49 @@ def main() -> None:
     # Array to store the states
     automaton = [initial_state]
 
-    # Generate the automaton manually
-    for _ in range(steps - 1):
-        new_state = rule30(automaton[-1])
+    # Generate the automaton manually with periodic boundary conditions
+    for _ in range(n_steps - 1):
+        new_state = rule30_periodic(automaton[-1])
         automaton.append(new_state)
 
-    display_automaton(automaton)
+    return automaton
 
 
-if __name__ == '__main__':
+def main():
+    # Request user input for the initial parameters
+    try:
+        n_steps = int(input("Enter the number of iterations (steps): "))
+        width = 2 * n_steps + 1  # Automatic width for rectangular version
+    except ValueError:
+        print("Please enter valid integers for the number of iterations.")
+        return
+
+    # Generate rectangular automaton
+    automaton_rectangular = generate_automaton(width, n_steps)
+
+    # Generate square automaton
+    automaton_square = generate_automaton(n_steps, n_steps)
+
+    # Plot the rectangular automaton
+    fig, ax = plt.subplots(1, 2, figsize=(20, 10))
+
+    ax[0].imshow(automaton_rectangular, cmap='binary',
+                 interpolation='nearest', aspect='auto')
+    ax[0].set_title(
+        f"Rule 30 Cellular Automaton (Rectangular)\n{n_steps} steps, {width} width")
+    ax[0].set_xlabel("Cell")
+    ax[0].set_ylabel("Step")
+
+    # Plot the square automaton
+    ax[1].imshow(automaton_square, cmap='binary',
+                 interpolation='nearest', aspect='auto')
+    ax[1].set_title(
+        f"Rule 30 Cellular Automaton (Square)\n{n_steps} steps, {n_steps} width")
+    ax[1].set_xlabel("Cell")
+    ax[1].set_ylabel("Step")
+
+    plt.show()
+
+
+if __name__ == "__main__":
     main()
-
-
-# TODO: For non-quadractic matrix (30 x 10) -> 2 extra points
